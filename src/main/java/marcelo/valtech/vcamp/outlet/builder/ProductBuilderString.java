@@ -10,7 +10,7 @@ import marcelo.valtech.vcamp.outlet.entity.Pants;
 import marcelo.valtech.vcamp.outlet.entity.Product;
 import marcelo.valtech.vcamp.outlet.entity.Shoes;
 
-public class ProductBuilder implements Builder{
+public class ProductBuilderString implements Builder{
 	private  int sku;
 	private  double price;
 	private  double weight;
