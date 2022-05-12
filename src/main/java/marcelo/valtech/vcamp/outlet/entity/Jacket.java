@@ -4,8 +4,8 @@ public class Jacket extends Product {
 	private final String weather;
 	private final String jSize;
 	
-	public Jacket(int sku, double price, double weight, String weather, String jSize) {
-		super(sku, price, weight);
+	public Jacket(int sku,int quantity, double price, double weight, String weather, String jSize) {
+		super(sku,quantity ,price, weight);
 		this.weather = weather;
 		this.jSize = jSize;
 	}

@@ -3,6 +3,7 @@ package marcelo.valtech.vcamp.outlet.builder;
 public interface ProductBuilder {
 	
 	ProductBuilder setSKU(int sku);
+	ProductBuilder setQuantity(int quantity);
 	ProductBuilder setPrice(double price);
 	ProductBuilder setWeight(double weight);
 	ProductBuilder setPSize(int pantSize);

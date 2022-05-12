@@ -5,8 +5,8 @@ public class Pants extends Product{
 	private final String material;
 	
 	
-	public Pants(int sku, double price, double weight, int pantSize2, String material) {
-		super(sku, price, weight);
+	public Pants(int sku,int quantity, double price, double weight, int pantSize2, String material) {
+		super(sku,quantity, price, weight);
 		this.pantSize = pantSize2;
 		this.material = material;
 	}
@@ -25,6 +25,7 @@ public class Pants extends Product{
 		return "Pants ["+ super.toString() + " |PantSize=" + pantSize + ", |material=" + material +  "]\n";
 	}
 
+	
 	
 	
 	
