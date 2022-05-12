@@ -1,43 +1,49 @@
 package marcelo.valtech.vcamp.outlet.director;
 
-import marcelo.valtech.vcamp.outlet.entity.Glasses;
-import marcelo.valtech.vcamp.outlet.entity.Jackets;
-import marcelo.valtech.vcamp.outlet.entity.Pants;
-import marcelo.valtech.vcamp.outlet.entity.Product;
-import marcelo.valtech.vcamp.outlet.entity.Shoes;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import marcelo.valtech.vcamp.outlet.builder.Builder;
+import marcelo.valtech.vcamp.outlet.builder.ProductBuilder;
+import marcelo.valtech.vcamp.outlet.entity.Product;
 
 public class Director {
-	public void buildPants(Builder builder) {
+
+	public void constructPants(ProductBuilder builder) {
 		builder.setSKU(1);
-		builder.setPrice(55);
-		builder.setWeight(1.5);
-		builder.setPants(new Pants(44 ,"jeans"));
+		builder.setPrice(40.00);
+		builder.setWeight(1.50);
+		builder.setPSize(44);
+		builder.setMaterial("jeans");
 	}
 	
-	public void buildShoes(Builder builder) {
+	public void constructShoes(ProductBuilder builder) {
 		builder.setSKU(2);
-		builder.setPrice(250);
-		builder.setWeight(2.0);
-		builder.setShoes(new Shoes(40 ,"FootBall"));
+		builder.setPrice(150.00);
+		builder.setWeight(2.50);
+		builder.setsSize(44);
+		builder.setSports("FootBall");
 	}
 	
-	public void buildGlasses(Builder builder) {
+	public void constructJacket(ProductBuilder builder) {
 		builder.setSKU(3);
-		builder.setPrice(150);
-		builder.setWeight(0.5);
-		builder.setGlasses(new Glasses("aviator", "sun-lens"));
+		builder.setPrice(250.00);
+		builder.setWeight(3.50);
+		builder.setJSize("GG");
+		builder.setWeather("Winter");
 	}
-	public void buildJackets(Builder builder) {
-		builder.setSKU(4);
-		builder.setPrice(300);
-		builder.setWeight(5.0);
-		builder.setJackets(new Jackets("GG", "Black"));
+	public void constructGlasses(ProductBuilder builder) {
+		builder.setSKU(3);
+		builder.setPrice(350.00);
+		builder.setWeight(0.50);
+		builder.setLensType("Sun lens");
+		builder.setModel("Aviator");
 	}
-
+	
+	public List<Product> catalog = new ArrayList<>();
+	
+	public List<Product> getAllProducts(Product product) {
+		
+		return  catalog;
+	}
+	
 }
-
