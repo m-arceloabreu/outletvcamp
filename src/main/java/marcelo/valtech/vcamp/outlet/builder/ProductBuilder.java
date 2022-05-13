@@ -4,6 +4,7 @@ public interface ProductBuilder {
 	
 	ProductBuilder setSKU(int sku);
 	ProductBuilder setQuantity(int quantity);
+	ProductBuilder setQuantityReserved(int quantityReserved);
 	ProductBuilder setPrice(double price);
 	ProductBuilder setWeight(double weight);
 	ProductBuilder setPSize(int pantSize);

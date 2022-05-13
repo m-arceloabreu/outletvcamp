@@ -8,13 +8,13 @@ public double shippingCost = 0;
 	
 	@Override
 	public Double deliver(double preco) {
-		Cart cart = new Cart();
 		
-		if(cart.getTotalPrice() <= 799) {
+		
+		if(preco<= 799) {
 			shippingCost = 7.99;
 		}
 		else {
-		shippingCost = cart.getTotalPrice() * 0.01;
+		shippingCost = preco * 0.01;
 		}
 		return shippingCost;
 	}

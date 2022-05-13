@@ -8,6 +8,7 @@ import marcelo.valtech.vcamp.outlet.entity.Shoes;
 public class ProductBuilderConcrete implements ProductBuilder {
 	private  int sku;
 	private int quantity;
+	private int quantityReserved;
 	private  double price;
 	private  double weight;
 	private int pantSize;
@@ -86,23 +87,30 @@ public class ProductBuilderConcrete implements ProductBuilder {
 	@Override
 	public ProductBuilder setModel(String model) {
 		this.model = model;
-		return null;
+		return this;
 	}
-	
+	@Override
+	public ProductBuilder setQuantityReserved(int quantityReserved) {
+		this.quantityReserved = quantityReserved;
+		return this;
+	}
 	
 	
 	public Pants getResultPants() {
-		return new Pants(sku, quantity,price, weight, pantSize, material);
+		return new Pants(sku, quantity,quantityReserved,price, weight, pantSize, material);
 	}
 	public Shoes getResultShoes() {
-		return new Shoes(sku,quantity, price, weight, sSize, sports);
+		return new Shoes(sku,quantity,quantityReserved, price, weight, sSize, sports);
 	}
 	public Jacket getResultJacket() {
-		return new Jacket(sku,quantity, price, weight, weather, jSize);
+		return new Jacket(sku,quantity,quantityReserved, price, weight, weather, jSize);
 	}
 	public Glasses getResultGlasses() {
-		return new Glasses(sku,quantity, price, weight, lensType, model);
+		return new Glasses(sku,quantity,quantityReserved, price, weight, lensType, model);
 	}
+	
+	
+	
 
 	
 	

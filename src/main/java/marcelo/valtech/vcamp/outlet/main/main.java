@@ -1,8 +1,12 @@
 package marcelo.valtech.vcamp.outlet.main;
 
+import java.util.ArrayList;
+
 import marcelo.valtech.vcamp.outlet.builder.ProductBuilderConcrete;
 import marcelo.valtech.vcamp.outlet.director.Cart;
+import marcelo.valtech.vcamp.outlet.director.CartCreator;
 import marcelo.valtech.vcamp.outlet.director.Director;
+import marcelo.valtech.vcamp.outlet.director.Order;
 import marcelo.valtech.vcamp.outlet.director.ProductInventory;
 import marcelo.valtech.vcamp.outlet.entity.Product;
 
@@ -47,10 +51,13 @@ public class main {
 		//System.out.println("------DEPOIS DE REMOVIDO DO ESTOQUE------------");
 		
 		//inventory.removeProductFromStock(1, 3);
-		Cart cart = new Cart();
-		cart.viewCart();
 		
-	
+		System.out.println("--------------------");
+		CartCreator createCart= new CartCreator();
+		
+		createCart.createCart();
+		Cart cart = createCart.getResultCart();
+		System.out.println(cart.toString());
 	}
 	
 	

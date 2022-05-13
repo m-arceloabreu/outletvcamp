@@ -6,8 +6,8 @@ public class ShippingFactory {
 	
 
 	public static Shipping chooseShipping(double weight) {
-		Cart cart = new Cart();
-		if(cart.getTotalWeight() <= 10) {
+		
+		if(weight >= 10) {
 			return new Road();
 		}
 		

@@ -19,7 +19,6 @@ public final class ProductInventory {
 
 	
 	public static List<Product> inventory = new ArrayList<Product>();
-	private static int prodQuantity = 0;
 	
 	private ProductInventory() {}
 	
@@ -54,10 +53,11 @@ public final class ProductInventory {
 		System.out.println(productQuantity);
 	}
 	
-	public List<Product> removeProductFromStock(int sku , int quantity) {
+	public List<Product> changeProductFromStocktoReserved(int sku , int quantity) {
 			for(Product p : inventory) {
 				if(p.getSku() == sku && p.getQuantity() >= quantity) {
 					p.setQuantity(p.getQuantity() - quantity);
+					p.setQuantityReserved(quantity);
 				}
 			}
 			return inventory;
