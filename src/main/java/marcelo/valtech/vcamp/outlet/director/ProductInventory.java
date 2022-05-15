@@ -49,8 +49,7 @@ public final class ProductInventory {
 	public void getProductQuantity(int sku) {
 		int skuu = sku -1;
 		Stream<Product> stream = inventory.stream().filter(prod -> prod.getSku() == sku);
-		int productQuantity = stream.toList().get(skuu).getQuantity();
-		System.out.println(productQuantity);
+		int productQuantityReserved = stream.toList().get(skuu).getQuantityReserved();
 	}
 	
 	public List<Product> changeProductFromStocktoReserved(int sku , int quantity) {
@@ -62,4 +61,17 @@ public final class ProductInventory {
 			}
 			return inventory;
 		}
+	public List<Product> changeProductFromReservedToStock(List<Product> procuct) {
+		for(Product p : inventory) {
+				p.setQuantity(p.getQuantityReserved() + p.getQuantity());
+				p.setQuantityReserved(0);
+		}
+		return inventory;
+	}
+	public List<Product> removeProductFromStock() {
+		for(Product p : inventory) {
+				p.setQuantityReserved(0);
+		}
+		return inventory;
+	}
 	}

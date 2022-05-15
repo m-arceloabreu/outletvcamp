@@ -11,29 +11,116 @@ import marcelo.valtech.vcamp.outlet.shipping.ShippingFactory;
 
 public class Cart {
 	
-	private int totalPrice;
+	private double cartPrice;
 	private int totalItens;
 	private double totalWeight;
 	private double totalShippingCost;
+	private String shippingType;
 	private List<Product> produtos ;
 	
-
+	ProductInventory inventory = ProductInventory.getInstance();
 	
-	public Cart(int totalPrice, int totalItens, double totalWeight, double totalShippingCost, List<Product> produtos) {
+	public Cart(double cartPrice, int totalItens, double totalWeight, double totalShippingCost,String shippingType, List<Product> produtos) {
 		super();
-		this.totalPrice = totalPrice;
+		this.cartPrice = cartPrice;
 		this.totalItens = totalItens;
 		this.totalWeight = totalWeight;
 		this.totalShippingCost = totalShippingCost;
+		this.shippingType =  shippingType;
+		this.produtos = produtos;
+	}
+	
+	
+
+
+	public double getCartPrice() {
+		return cartPrice;
+	}
+
+
+
+
+	public void setCartPrice(double cartPrice) {
+		this.cartPrice = cartPrice;
+	}
+
+
+
+
+	public int getTotalItens() {
+		return totalItens;
+	}
+
+
+
+
+	public void setTotalItens(int totalItens) {
+		this.totalItens = totalItens;
+	}
+
+
+
+
+	public double getTotalWeight() {
+		return totalWeight;
+	}
+
+
+
+
+	public void setTotalWeight(double totalWeight) {
+		this.totalWeight = totalWeight;
+	}
+
+
+
+
+	public double getTotalShippingCost() {
+		return totalShippingCost;
+	}
+
+
+
+
+	public void setTotalShippingCost(double totalShippingCost) {
+		this.totalShippingCost = totalShippingCost;
+	}
+
+
+
+
+	public String getShippingType() {
+		return shippingType;
+	}
+
+
+
+
+	public void setShippingType(String shippingType) {
+		this.shippingType = shippingType;
+	}
+
+
+
+
+	public List<Product> getProdutos() {
+		return produtos;
+	}
+
+
+
+
+	public void setProdutos(List<Product> produtos) {
 		this.produtos = produtos;
 	}
 
 
 
+
 	@Override
 	public String toString() {
-		return "Cart: \nTotalPrice=" + totalPrice + " \nTotalItens=" + totalItens + "\nTotalWeight=" + totalWeight
-				+ "\n TotalShippingCost=" + totalShippingCost + "\n Produtos=" + produtos + "\n";
+		return "Cart: \nCartPrice=" + cartPrice + " \nTotalItens=" + totalItens + "\nTotalWeight=" + totalWeight
+				+"\nShippingType= "+shippingType +"\nTotalShippingCost= " + totalShippingCost + "\n Produtos=" + produtos + "\n";
 	}
 
 

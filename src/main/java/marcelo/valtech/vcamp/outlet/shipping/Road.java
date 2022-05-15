@@ -6,16 +6,23 @@ public class Road implements Shipping{
 	public double shippingCost = 0;
 	
 	@Override
-	public Double deliver(double preco) {
+	public Double deliver(double preco, int qtd) {
 		
 		if(preco <= 799) {
 			shippingCost = 7.99;
 		}
 		else {
-		shippingCost = preco * 0.01;
+		shippingCost = (preco * 0.01) + (qtd);
 		}
 		return shippingCost;
 	}
+	
+	@Override
+	public String description() {
+		
+		return "Road";
+	}
+	
 	
 	
 }
