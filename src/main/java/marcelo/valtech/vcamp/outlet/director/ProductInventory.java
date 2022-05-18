@@ -23,13 +23,11 @@ public final class ProductInventory {
 	private ProductInventory() {}
 	
 	public static ProductInventory getInstance( ) {
-		if(prodInve != null) {
-			return prodInve;
-		}
+	 	
 		synchronized(ProductInventory.class){
 			if(prodInve ==  null) {
 				prodInve = new ProductInventory();
-				return prodInve;
+				return prodInve; 
 			}
 			return prodInve;
 		}
@@ -45,33 +43,37 @@ public final class ProductInventory {
 		System.out.println(inventory.get(sku-1));
 		return inventory.get(sku-1);
 	}
-	
+	 
 	public void getProductQuantity(int sku) {
 		int skuu = sku -1;
 		Stream<Product> stream = inventory.stream().filter(prod -> prod.getSku() == sku);
-		int productQuantityReserved = stream.toList().get(skuu).getQuantityReserved();
+		stream.toList().get(skuu).getQuantityReserved();
 	}
 	
 	public List<Product> changeProductFromStocktoReserved(int sku , int quantity) {
 			for(Product p : inventory) {
 				if(p.getSku() == sku && p.getQuantity() >= quantity) {
-					p.setQuantity(p.getQuantity() - quantity);
+		 			p.setQuantity(p.getQuantity() - quantity);
 					p.setQuantityReserved(quantity);
-				}
+				} 
 			}
 			return inventory;
 		}
-	public List<Product> changeProductFromReservedToStock(List<Product> procuct) {
+	public List<Product> changeProductFromReservedToStock(List<Product> inventory) {
 		for(Product p : inventory) {
 				p.setQuantity(p.getQuantityReserved() + p.getQuantity());
 				p.setQuantityReserved(0);
 		}
 		return inventory;
 	}
-	public List<Product> removeProductFromStock() {
-		for(Product p : inventory) {
-				p.setQuantityReserved(0);
+	public List<Product> removeProductFromStock(int sku, int qtd) {
+		for(Product p: inventory) {
+			if(p.getSku() == sku) {
+			p.setQuantityReserved(p.getQuantityReserved() - qtd );
+			}
 		}
 		return inventory;
+			
 	}
 	}
+

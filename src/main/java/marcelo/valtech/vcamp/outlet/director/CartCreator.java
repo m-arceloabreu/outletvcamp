@@ -12,87 +12,110 @@ import marcelo.valtech.vcamp.outlet.shipping.ShippingFactory;
 public class CartCreator {
 	
 	ProductInventory inventory = ProductInventory.getInstance();
-	private double totalPrice; 
-	private double cartPrice;
-	private int totalItens;
-	private double totalWeight;
-	private double totalShippingCost;
-	private String shippingType;
-	private List<Product> produtos = new ArrayList<>();
-
+	Cart cart;
 	
-	
-	public Cart getResultCart() {
-		return new Cart( cartPrice,  totalItens,  totalWeight,  totalShippingCost,shippingType, produtos);
-	}
+	   
+	   int totalItens;
+	   double totalWeight; 
+	   double totalShippingCost; 
+	   String shippingType; 
+	   List<Product> produtos = new ArrayList<>();
+	  double cartValue = 0;
+	  
+	  
+	  
+	  public Cart getResultCart() { 
+		  return new Cart( cartValue, totalItens,
+				  totalWeight, totalShippingCost,shippingType, produtos); 
+		  }
+	 
 
 	public void createCart() {
-		int prodCode;
+		int i = 0;
+		int sku;
 		int qtd;
-		int resp = 1;
+		int resp = 1; 
 		Scanner sc = new Scanner (System.in);
 		System.out.println("Catalogo: \n" + inventory.inventory);
-		while(resp == 1) {
-		System.out.println("Adicione Produto pelo SKU: ");
-		prodCode = sc.nextInt();
-		System.out.println("Adicione a Quantidade: ");
-		qtd = sc.nextInt();
-		addItemBySku(prodCode,qtd);
-		System.out.println("Add item: 1  | Finish: 2");
+		while(i == 0) {
+		System.out.println("Add item: 1  | RemoveItem: 2 |Finish: 3");
 		resp = sc.nextInt();
+	
+		if(resp == 1) {
+				System.out.println("Adicione Produto pelo SKU: ");
+				sku = sc.nextInt();
+				System.out.println("Adicione a Quantidade: ");
+				qtd = sc.nextInt();
+			addItemBySku(sku, qtd);
+			i = 0;
+		}else if(resp == 2) {
+				System.out.println("Remover Produto pelo SKU: ");
+				sku = sc.nextInt();
+				System.out.println("Remover a Quantidade: ");
+				qtd = sc.nextInt();
+			removeProductBySku(sku, qtd);
+			i = 0;
+			}
+			else {
+				i =1;
+			}
 		}
-		cartCost();
-		totalQuantity();
-		cartWeight();
-		shippingCost();
-		totalPriceCalc();
+
+		 cartCost();
+		 totalQuantity();
+		 cartWeight();
+		 shippingCost();
 	}
+
+	
 	
 public List<Product> addItemBySku(int sku, int qtd) {
-		
+
 		inventory.changeProductFromStocktoReserved(sku, qtd);
 		Product cartProduct = (inventory.getProductBySku(sku));
 		produtos.add(cartProduct);
 		return produtos;
 	}
-	
-	public void cartCost() {
-		for(Product p : produtos) {
-			cartPrice += (p.getQuantityReserved()) * (p.getPrice());
+public List<Product> removeProductBySku(int sku, int qtd){
+	for (Product p : produtos) {
+		if(p.getSku() == sku && p.getQuantityReserved() == qtd) {
+			produtos.remove(p);
 		}
-
-	}
-	public void totalQuantity() {
-		for(Product p : produtos) {
-			totalItens += (p.getQuantityReserved());
+		else if(p.getSku() == sku && p.getQuantityReserved() > qtd) {
+			p.setQuantityReserved(p.getQuantityReserved() - qtd);
+			p.setQuantity(p.getQuantity() + qtd);
 		}
 	}
-	
-	public void cartWeight() {
-		for(Product p : produtos) {
-			totalWeight +=  (p.getQuantityReserved() * p.getWeight());
-		}
+	return produtos;
+}
+public double cartCost() {
+	cartValue = 0;
+	for(Product p : produtos) {
+		cartValue += (p.getQuantityReserved()) * (p.getPrice());
 	}
-	
-	public void shippingCost() {
-	 Shipping shipping = ShippingFactory.chooseShipping(totalWeight);
-	 totalShippingCost = shipping.deliver(cartPrice, totalItens);
-	 shippingType = shipping.description();
-	}
+	return cartValue;
 
-	public double getCartPrice() {
-		return cartPrice;
+}
+public int totalQuantity() {
+	for(Product p : produtos) {
+		totalItens += (p.getQuantityReserved());
 	}
+	return totalItens;
+}
 
+public Double cartWeight() {
+	for(Product p : produtos) {
+		totalWeight +=  (p.getQuantityReserved() * p.getWeight());
+	}
+	return totalWeight;
+}
 
-	public double getTotalShippingCost() {
-		return totalShippingCost;
-	}
-	
-	
-	public void totalPriceCalc() {
-		totalPrice = totalShippingCost + cartPrice;
-	}
+public double shippingCost() {
+ Shipping shipping = ShippingFactory.chooseShipping(totalWeight);
+ totalShippingCost = shipping.deliver(cartValue, totalItens);
+ return totalShippingCost;
+}
+
 
 	
 	

@@ -12,7 +12,7 @@ public class Road implements Shipping{
 			shippingCost = 7.99;
 		}
 		else {
-		shippingCost = (preco * 0.01) + (qtd);
+		shippingCost = (preco * 0.1) + (qtd);
 		}
 		return shippingCost;
 	}

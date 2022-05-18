@@ -3,14 +3,20 @@ package marcelo.valtech.vcamp.outlet.main;
 import java.util.ArrayList;
 
 import marcelo.valtech.vcamp.outlet.builder.ProductBuilderConcrete;
+import marcelo.valtech.vcamp.outlet.director.BackOffice;
 import marcelo.valtech.vcamp.outlet.director.Cart;
 import marcelo.valtech.vcamp.outlet.director.CartCreator;
 import marcelo.valtech.vcamp.outlet.director.Director;
 import marcelo.valtech.vcamp.outlet.director.Order;
+import marcelo.valtech.vcamp.outlet.director.OrderList;
 import marcelo.valtech.vcamp.outlet.director.ProductInventory;
+import marcelo.valtech.vcamp.outlet.entity.Glasses;
+import marcelo.valtech.vcamp.outlet.entity.Jacket;
+import marcelo.valtech.vcamp.outlet.entity.Pants;
 import marcelo.valtech.vcamp.outlet.entity.Product;
+import marcelo.valtech.vcamp.outlet.entity.Shoes;
 
-public class BackOffice {
+public class main { 
 	public static void main(String[] args) {
 		Director director = new Director();
 		
@@ -20,33 +26,37 @@ public class BackOffice {
 		
 
 		director.constructPants(prodBuilder);
-		Product pants = prodBuilder.getResultPants();
+		Pants pants = prodBuilder.getResultPants();
 		director.catalog.add(pants);
 		
 		director.constructShoes(prodBuilder);
-		Product shoes = prodBuilder.getResultShoes();
+		Shoes shoes = prodBuilder.getResultShoes();
 		director.catalog.add(shoes);
 		
 		director.constructJacket(prodBuilder);
-		Product jacket = prodBuilder.getResultJacket();
+		Jacket jacket = prodBuilder.getResultJacket();
 		director.catalog.add(jacket);
 		
 		director.constructGlasses(prodBuilder);
-		Product glasses = prodBuilder.getResultGlasses();
+		Glasses glasses = prodBuilder.getResultGlasses();
 		director.catalog.add(glasses);
 		
 		inventory.addToInventory(director.catalog);
-		
-		
+
 		System.out.println("--------------------");
 		CartCreator createCart= new CartCreator();
 		createCart.createCart();
 		Cart cart = createCart.getResultCart();
+		
 		System.out.println(cart.toString());
 		System.out.println("----------------------");
-		Order order = new Order();
-		order.Order(cart, order.setStatus(cart, "paid"));
-		System.out.println(order.toString());
+		
+		
+		OrderList orderList = OrderList.getInstance();
+		BackOffice bO = new BackOffice();
+
+		orderList.observers.add(bO); 
+		Order order = new Order(cart, "paid");
 	}
 	
 	

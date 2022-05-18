@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import marcelo.valtech.vcamp.outlet.builder.ProductBuilder;
+import marcelo.valtech.vcamp.outlet.builder.ProductBuilderConcrete;
 import marcelo.valtech.vcamp.outlet.entity.Product;
 
-public class Director {
+public  class Director {
 
-	public void constructPants(ProductBuilder builder) {
+	public static void constructPants(ProductBuilderConcrete builder) {
 		builder.setSKU(1);
 		builder.setQuantity(10);
 		builder.setQuantityReserved(0);
@@ -18,7 +19,7 @@ public class Director {
 		builder.setMaterial("jeans");
 	}
 	
-	public void constructShoes(ProductBuilder builder) {
+	public void constructShoes(ProductBuilderConcrete builder) {
 		builder.setSKU(2);
 		builder.setQuantity(10);
 		builder.setQuantityReserved(0);
@@ -28,7 +29,7 @@ public class Director {
 		builder.setSports("FootBall");
 	}
 	
-	public void constructJacket(ProductBuilder builder) {
+	public void constructJacket(ProductBuilderConcrete builder) {
 		builder.setSKU(3);
 		builder.setQuantity(10);
 		builder.setQuantityReserved(0);
@@ -37,7 +38,7 @@ public class Director {
 		builder.setJSize("GG");
 		builder.setWeather("Winter");
 	}
-	public void constructGlasses(ProductBuilder builder) {
+	public void constructGlasses(ProductBuilderConcrete builder) {
 		builder.setSKU(4);
 		builder.setQuantity(10);
 		builder.setQuantityReserved(0);
@@ -51,7 +52,7 @@ public class Director {
 	
 	public List<Product> getAllProducts() {
 		
-		return  catalog;
+		return catalog;
 	}
 	
 }
