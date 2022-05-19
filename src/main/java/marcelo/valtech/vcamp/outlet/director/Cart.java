@@ -19,7 +19,7 @@ public class Cart {
 	
 	ProductInventory inventory = ProductInventory.getInstance();
 	
-	public Cart(double cartPrice, int totalItens, double totalWeight, double totalShippingCost,String shippingType, List<Product> produtos) {
+	public Cart(double cartPrice, int totalItens, double totalWeight, double totalShippingCost, List<Product> produtos) {
 		super();
 		this.cartPrice = cartPrice;
 		this.totalItens = totalItens;
@@ -32,33 +32,23 @@ public class Cart {
 	public double getCartPrice() {
 		return cartPrice;
 	}
-	public void setCartPrice(double cartPrice) {
-		this.cartPrice = cartPrice;
-	}
+	
 	public int getTotalItens() {
 		return totalItens;
 	}
-	public void setTotalItens(int totalItens) {
-		this.totalItens = totalItens;
-	}
+	
 	public double getTotalWeight() {
 		return totalWeight;
 	}
-	public void setTotalWeight(double totalWeight) {
-		this.totalWeight = totalWeight;
-	}
+	
 	public double getTotalShippingCost() {
 		return totalShippingCost;
 	}
-	public void setTotalShippingCost(double totalShippingCost) {
-		this.totalShippingCost = totalShippingCost;
-	}
+	
 	public List<Product> getProdutos() {
 		return produtos;
 	}
-	public void setProdutos(List<Product> produtos) {
-		this.produtos = produtos;
-	}
+	
 	
 	@Override
 	public String toString() {

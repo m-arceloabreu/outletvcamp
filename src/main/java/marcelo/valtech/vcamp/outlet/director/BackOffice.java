@@ -9,13 +9,13 @@ public class BackOffice implements BackOfficeObserver {
  
 @Override
 public void renderOrderList(List<Order> orderList) {
-	for (Order order : orderList) {
+	for (Order order : orderList) { 
 		String status = order.getStatus();
 		Double price = order.getTotalPrice();
-		String shipingType = order.getShippingType();
+		String shipingType = order.shippingType();
 		Cart cart = order.getCart();
 		
-		System.out.println(
+		System.out.println( 
 				"Status: "+ status+
 				"\nTotalPrice: " + price+
 				"\n ShyppingType"+ shipingType+

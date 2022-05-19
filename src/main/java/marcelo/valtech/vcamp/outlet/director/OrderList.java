@@ -13,9 +13,7 @@ public class OrderList {
 	private OrderList() {}
 	
 	public static OrderList getInstance() {
-		if(orList != null) {
-			return orList;
-		}
+		
 		synchronized(OrderList.class){
 			if(orList ==  null) {
 				orList = new OrderList();
@@ -32,16 +30,25 @@ public class OrderList {
 
 	public int i = 0;
 	
-	public  Order getFirst() {
+	public Order getFirst() {
 		i = 0;
 		return orderList.get(i);
 	}
 	public Order getNext(){
-		i = 0;
-		return orderList.get(i +1);
+		Order itemList = orderList.get(i+1);
+		return itemList;
+	}
+	public boolean hasNext() {
+		if(i >= orderList.size() || orderList.get(i)== null) {
+			return false;
+		}else {
+			return true;
+		}
+		
 	}
 	public void reset() {
 		i = 0;
+		
 	}
 	
 	public void addObserver(BackOfficeObserver o) {
@@ -51,7 +58,7 @@ public class OrderList {
 	}
 	public void removeObserver(BackOfficeObserver o){
 		observers.remove(o);
-	}
+	} 
 	
 	public void notifyObserver(){
 		for(BackOfficeObserver o: observers) {

@@ -18,7 +18,7 @@ public class CartCreator {
 	   int totalItens;
 	   double totalWeight; 
 	   double totalShippingCost; 
-	   String shippingType; 
+	   
 	   List<Product> produtos = new ArrayList<>();
 	  double cartValue = 0;
 	  
@@ -26,7 +26,7 @@ public class CartCreator {
 	  
 	  public Cart getResultCart() { 
 		  return new Cart( cartValue, totalItens,
-				  totalWeight, totalShippingCost,shippingType, produtos); 
+				  totalWeight, totalShippingCost, produtos); 
 		  }
 	 
 
@@ -76,12 +76,16 @@ public List<Product> addItemBySku(int sku, int qtd) {
 		produtos.add(cartProduct);
 		return produtos;
 	}
-public List<Product> removeProductBySku(int sku, int qtd){
+public List<Product> removeProductBySku(Integer sku, int qtd){
 	for (Product p : produtos) {
-		if(p.getSku() == sku && p.getQuantityReserved() == qtd) {
-			produtos.remove(p);
-		}
-		else if(p.getSku() == sku && p.getQuantityReserved() > qtd) {
+			if(p.getSku() == sku && p.getQuantityReserved() == qtd) {
+				produtos.remove(p);
+				break;
+			}
+
+		
+		
+		if(p.getSku() == sku && p.getQuantityReserved() > qtd) {
 			p.setQuantityReserved(p.getQuantityReserved() - qtd);
 			p.setQuantity(p.getQuantity() + qtd);
 		}

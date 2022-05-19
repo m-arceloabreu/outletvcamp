@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
+import org.mockito.Mockito;
 
 import marcelo.valtech.vcamp.outlet.builder.ProductBuilderConcrete;
 import marcelo.valtech.vcamp.outlet.entity.Pants;
@@ -33,6 +34,7 @@ public class CartCreatorTest {
 	  @Before
 	  public void start()
 	  {		//scene
+		  	
 		  	director.constructPants(prodBuilder);
 		  	Pants pants = prodBuilder.getResultPants();
 			inventory.inventory.add(pants);
@@ -53,6 +55,21 @@ public class CartCreatorTest {
 		  //verification
 		  assertEquals(createCart.produtos.get(0), inventory.inventory.get(0));
 		  assertEquals(createCart.produtos.get(1), inventory.inventory.get(1)); 
+	  }
+	  @Test
+	  public void removeItemBySkuTest() {
+		  //scene
+		  int sku1 = 1;
+		  int qtd1 = 3;
+		  int sku2 = 2;
+		  int qtd2 = 5;
+		  //action
+		  createCart.removeProductBySku(sku1, qtd1);
+		  createCart.removeProductBySku(sku2, qtd2);
+		  //verification
+		  assertEquals(1, createCart.produtos.size());
+		  assertEquals(3, createCart.produtos.get(0).getQuantityReserved());
+		  assertEquals(7, createCart.produtos.get(0).getQuantity());
 	  }
 	  @Test
 	  public void cartCostTest() {
@@ -87,5 +104,15 @@ public class CartCreatorTest {
 		 createCart.shippingCost();
 		 
 		 error.checkThat(createCart.totalShippingCost,CoreMatchers.is(143.0));
+	  }
+	  @Test
+	  public void getCartResultTest() {
+		  //action
+		  createCart.produtos.clear();
+		  createCart.getResultCart();
+		  Cart cart = new Cart(0.0, 0 ,0,0, createCart.produtos);
+		  //verification
+		  assertEquals(createCart.getResultCart().toString(),
+				  cart.toString());
 	  }
 	  }
