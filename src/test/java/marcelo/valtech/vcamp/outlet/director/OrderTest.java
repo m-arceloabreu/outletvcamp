@@ -18,11 +18,10 @@ import marcelo.valtech.vcamp.outlet.entity.Shoes;
 
 public class OrderTest {
 	Order order;
-	Cart cart;
 	private Director director = new Director();
 	private ProductBuilderConcrete prodBuilder = new ProductBuilderConcrete();
 	private ProductInventory inventory = ProductInventory.getInstance();
-	private CartCreator createCart = new CartCreator();
+	private Cart cart = new Cart();
 	
 	@Rule
 	  public ErrorCollector error = new ErrorCollector();
@@ -37,50 +36,12 @@ public class OrderTest {
 			Shoes shoes = prodBuilder.getResultShoes();
 			inventory.inventory.add(shoes);
 			
-			createCart.produtos = createCart.addItemBySku(1, 3);
-			createCart.produtos = createCart.addItemBySku(2, 5);
-			createCart.totalQuantity();
-			createCart.cartCost();
-			createCart.cartWeight();
-			createCart.shippingCost();
-			cart = createCart.getResultCart();
+			cart.addItem(1, 3);
+			cart.addItem(2, 3);
 			order = new Order(cart, "paid");
 			
-			
 	  }	
-	
-	@Test
-	public void shippingTypeTest() {
-		//action
-		order.shippingType();
-		List<Cart> cart1 = new ArrayList<Cart>();
-		//verification
-		
-		error.checkThat(cart.getTotalItens(),CoreMatchers.is(8));
-		error.checkThat(cart.getProdutos(),CoreMatchers.is(createCart.produtos));
-		error.checkThat(cart.getCartPrice(), CoreMatchers.is(870.0));
-		error.checkThat(order.shippingType, CoreMatchers.is("Road"));
-	}
-	@Test
-	public void getCartTest() {
-		//action
-		order.getCart();
-		//verification
-		assertEquals(cart, order.getCart());
-	}
-	@Test
-	public void getTotalPriceTest() {
-		//action
-		order.getTotalPrice();
-		//verification
-		error.checkThat(order.getTotalPrice(), CoreMatchers.is(cart.getCartPrice()+ cart.getTotalShippingCost()));
-	}
-	@Test
-	public void getStatusTest() {
-		order.getStatus();
-		//verification
-		assertEquals("paid", order.getStatus());
-	}
+
 	
 
 }
