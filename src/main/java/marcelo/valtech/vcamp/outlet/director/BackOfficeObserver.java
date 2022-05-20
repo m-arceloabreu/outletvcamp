@@ -1,8 +1,8 @@
 package marcelo.valtech.vcamp.outlet.director;
 
 import java.util.List;
-
+//Interface that serve BackOffice class
 public interface BackOfficeObserver {
 	
-	void renderOrderList(List<Order> orderList);
+	String renderOrderList(List<Order> orderList);
 }

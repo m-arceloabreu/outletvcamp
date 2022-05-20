@@ -102,6 +102,33 @@ public class OrderListTest {
 		//verification
 		assertTrue(orderList.hasNext());
 	}
+	@Test
+	public void addOrderTest() {
+		//scene
+		Order order = (Mockito.mock(Order.class));
+		Order order2 = (Mockito.mock(Order.class));
+		//action
+		orderList.addOrder(order);
+		orderList.addOrder(order2);
+		//verification
+		assertEquals(2,orderList.orderList.size());
+	}
+	@Test
+	public void notifyObserverTest(){
+		//scene
+		Order order = (Mockito.mock(Order.class));
+		BackOffice ob = Mockito.mock(BackOffice.class);
+		orderList.orderList.add(order);
+		orderList.observers.add(ob);
+		//action
+		orderList.notifyObserver();
+		//verification
+		assertEquals(bo.renderOrderList(orderList.orderList), orderList.orderList.toString());
+		
+	}
+
+	
+	
 	
 	
 }

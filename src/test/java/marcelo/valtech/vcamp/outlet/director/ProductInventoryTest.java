@@ -129,7 +129,7 @@ public class ProductInventoryTest {
 		
 		inventory.inventory.add(pants);
 		//action
-		inventory.removeProductFromStock(1, 3);
+		inventory.removeProductFromStock();
 		//verification
 		assertEquals(0,inventory.inventory.get(0).getQuantityReserved());
 		

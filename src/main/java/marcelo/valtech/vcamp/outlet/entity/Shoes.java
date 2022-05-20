@@ -3,9 +3,9 @@ package marcelo.valtech.vcamp.outlet.entity;
 public class Shoes extends Product {
 	private final int sSize;
 	private final String sports;
-	
-	public Shoes(int sku,int quantity,int quantityReserved,double price, double weight, int sSize, String sports) {
-		super(sku,quantity,quantityReserved, price, weight);
+
+	public Shoes(int sku, int quantity, int quantityReserved, double price, double weight, int sSize, String sports) {
+		super(sku, quantity, quantityReserved, price, weight);
 		this.sSize = sSize;
 		this.sports = sports;
 	}
@@ -17,10 +17,10 @@ public class Shoes extends Product {
 	public String getSports() {
 		return sports;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Shoes ["+ super.toString() + " |ShoedSize=" + sSize + ", |Sports=" + sports +  "]\n";
+		return "Shoes [" + super.toString() + " |ShoedSize=" + sSize + ", |Sports=" + sports + "]\n";
 	}
-	
+
 }
