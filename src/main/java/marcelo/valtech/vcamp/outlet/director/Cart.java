@@ -1,6 +1,7 @@
 package marcelo.valtech.vcamp.outlet.director;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -21,8 +22,9 @@ public class Cart {
 	}
 
 	public List<Product> addItem(int sku, int qtd) {
+		
 		for (Product p : inventory.inventory) {
-
+			
 			if (p.getSku() == sku && p.getQuantity() < qtd) {
 				System.out.println("Sorry, We don't have this amount");
 				break;
@@ -34,7 +36,6 @@ public class Cart {
 				break;
 			} else if (sku > inventory.inventory.size()) {
 				System.out.println("Sorry, We don't have this SKU, Try it again");
-
 			}
 		}
 		return products;

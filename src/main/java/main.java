@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import marcelo.valtech.vcamp.outlet.builder.ProductBuilderConcrete;
@@ -53,10 +54,12 @@ public class main {
 		System.out.println("---------------------------------");
 		System.out.println(cart.toString());
 		Scanner sc = new Scanner(System.in);
+		try {
 		while (i == 0) {
 			System.out.println("Add item: 1  | RemoveItem: 2 |Finish: 3");
 			option = sc.nextInt();
-			if (option == 1) {
+			
+				if (option == 1) {
 				System.out.println("Choose Item by the SKU: ");
 				sku = sc.nextInt();
 				System.out.println("Quantity to be added ");
@@ -75,8 +78,8 @@ public class main {
 			} else {
 				System.out.println("Try again with an avaiable option");
 				i = 0;
-
 			}
+			
 		}
 		cart.getTotal();
 		cart.getWeight();
@@ -96,9 +99,10 @@ public class main {
 				Order order1 = new Order();
 				String status = order1.setStatus(op, cart);
 				Order order = new Order(cart, status);
-
 			}
-
+		}
+		}catch(InputMismatchException e) {
+			System.out.println("Try again with an avaiable option!");
 		}
 
 	}
